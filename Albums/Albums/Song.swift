@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Song: Decodable {
+struct Song: Codable {
 
 //MARK: - Properties -
     var id: String
@@ -31,7 +31,8 @@ struct Song: Decodable {
         
     }
     
-//MARK: - Decoder init method -
+//MARK: - Decoder & Encoder -
+    // Decoder init method
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: SongKeys.self)
         let durationContainer = try container.nestedContainer(keyedBy: SongKeys.DurationKey.self, forKey: .duration)
@@ -42,4 +43,8 @@ struct Song: Decodable {
         name = try nameContainer.decode(String.self, forKey: .title)
     }
     
+    // Encoder method
+    func encode(to encoder: Encoder) throws {
+        <#code#>
+    }
 }
