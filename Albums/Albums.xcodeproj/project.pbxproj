@@ -19,6 +19,7 @@
 		7B292BFF285D83B90030DC4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B292BFD285D83B90030DC4A /* Main.storyboard */; };
 		7B292C01285D83BB0030DC4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B292C00285D83BB0030DC4A /* Assets.xcassets */; };
 		7B292C04285D83BB0030DC4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B292C02285D83BB0030DC4A /* LaunchScreen.storyboard */; };
+		7B4BEA71286BDB4E007B201F /* AlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BEA70286BDB4E007B201F /* AlbumController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		7B292C00285D83BB0030DC4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B292C03285D83BB0030DC4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B292C05285D83BB0030DC4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B4BEA70286BDB4E007B201F /* AlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				7B292C0B285D83CB0030DC4A /* Other */,
 				7B1F66AF2862B603008B38ED /* Models */,
+				7B4BEA6F286BDB3B007B201F /* Model Controllers */,
 				7B1F66A82862A9C5008B38ED /* Views */,
 				7B292C0D285D83E60030DC4A /* View Controllers */,
 				7B292C0C285D83D70030DC4A /* Storyboards */,
@@ -123,6 +126,14 @@
 				7B1F66AB2862AE33008B38ED /* AlbumDetailTableViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7B4BEA6F286BDB3B007B201F /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7B4BEA70286BDB4E007B201F /* AlbumController.swift */,
+			);
+			name = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B1F66AE2862B13E008B38ED /* SongTableViewCell.swift in Sources */,
+				7B4BEA71286BDB4E007B201F /* AlbumController.swift in Sources */,
 				7B292BF8285D83B90030DC4A /* AppDelegate.swift in Sources */,
 				7B1F66A72862A916008B38ED /* AlbumsTableViewController.swift in Sources */,
 				7B1F66AC2862AE33008B38ED /* AlbumDetailTableViewController.swift in Sources */,
