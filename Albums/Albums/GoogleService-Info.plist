@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>856130959184-4ujfknr2srvgs03skvq191t1rfd6lm25.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.856130959184-4ujfknr2srvgs03skvq191t1rfd6lm25</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBfm-cYigXZHzs4kjM2Wler3hcqESQ55Do</string>
+	<key>GCM_SENDER_ID</key>
+	<string>856130959184</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.PracticeID.Albums</string>
+	<key>PROJECT_ID</key>
+	<string>albums-f1003</string>
+	<key>STORAGE_BUCKET</key>
+	<string>albums-f1003.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:856130959184:ios:24882c9b780a39e546de55</string>
+</dict>
+</plist>

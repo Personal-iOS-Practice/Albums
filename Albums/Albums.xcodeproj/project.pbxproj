@@ -20,6 +20,9 @@
 		7B292C01285D83BB0030DC4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B292C00285D83BB0030DC4A /* Assets.xcassets */; };
 		7B292C04285D83BB0030DC4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B292C02285D83BB0030DC4A /* LaunchScreen.storyboard */; };
 		7B4BEA71286BDB4E007B201F /* AlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BEA70286BDB4E007B201F /* AlbumController.swift */; };
+		7BC4A639286BF07A00916B93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BC4A638286BF07A00916B93 /* GoogleService-Info.plist */; };
+		7BC4A63C286BF26000916B93 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7BC4A63B286BF26000916B93 /* FirebaseAnalytics */; };
+		7BC4A63E286BF26000916B93 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7BC4A63D286BF26000916B93 /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,7 @@
 		7B292C03285D83BB0030DC4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B292C05285D83BB0030DC4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B4BEA70286BDB4E007B201F /* AlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumController.swift; sourceTree = "<group>"; };
+		7BC4A638286BF07A00916B93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC4A63E286BF26000916B93 /* FirebaseDatabase in Frameworks */,
+				7BC4A63C286BF26000916B93 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,8 +110,9 @@
 				7B292BF7285D83B90030DC4A /* AppDelegate.swift */,
 				7B292BF9285D83B90030DC4A /* SceneDelegate.swift */,
 				7B292C00285D83BB0030DC4A /* Assets.xcassets */,
-				7B292C05285D83BB0030DC4A /* Info.plist */,
 				7B1F66B22862B658008B38ED /* exampleAlbum.json */,
+				7B292C05285D83BB0030DC4A /* Info.plist */,
+				7BC4A638286BF07A00916B93 /* GoogleService-Info.plist */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -152,6 +159,10 @@
 			dependencies = (
 			);
 			name = Albums;
+			packageProductDependencies = (
+				7BC4A63B286BF26000916B93 /* FirebaseAnalytics */,
+				7BC4A63D286BF26000916B93 /* FirebaseDatabase */,
+			);
 			productName = Albums;
 			productReference = 7B292BF4285D83B90030DC4A /* Albums.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +191,9 @@
 				Base,
 			);
 			mainGroup = 7B292BEB285D83B90030DC4A;
+			packageReferences = (
+				7BC4A63A286BF26000916B93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 7B292BF5285D83B90030DC4A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -196,6 +210,7 @@
 			files = (
 				7B292C04285D83BB0030DC4A /* LaunchScreen.storyboard in Resources */,
 				7B292C01285D83BB0030DC4A /* Assets.xcassets in Resources */,
+				7BC4A639286BF07A00916B93 /* GoogleService-Info.plist in Resources */,
 				7B1F66B32862B658008B38ED /* exampleAlbum.json in Resources */,
 				7B292BFF285D83B90030DC4A /* Main.storyboard in Resources */,
 			);
@@ -376,7 +391,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PracticeID.Albums;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PracticeID.Albums;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -404,7 +419,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PracticeID.Albums;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PracticeID.Albums;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -434,6 +449,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7BC4A63A286BF26000916B93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7BC4A63B286BF26000916B93 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BC4A63A286BF26000916B93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		7BC4A63D286BF26000916B93 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BC4A63A286BF26000916B93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B292BEC285D83B90030DC4A /* Project object */;
 }
