@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7B1F66A72862A916008B38ED /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F66A62862A916008B38ED /* AlbumsTableViewController.swift */; };
-		7B1F66AA2862A9E8008B38ED /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F66A92862A9E8008B38ED /* AlbumTableViewCell.swift */; };
 		7B1F66AC2862AE33008B38ED /* AlbumDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F66AB2862AE33008B38ED /* AlbumDetailTableViewController.swift */; };
 		7B1F66AE2862B13E008B38ED /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F66AD2862B13E008B38ED /* SongTableViewCell.swift */; };
 		7B1F66B12862B615008B38ED /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F66B02862B615008B38ED /* Album.swift */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		7B1F66A62862A916008B38ED /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
-		7B1F66A92862A9E8008B38ED /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		7B1F66AB2862AE33008B38ED /* AlbumDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailTableViewController.swift; sourceTree = "<group>"; };
 		7B1F66AD2862B13E008B38ED /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		7B1F66B02862B615008B38ED /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 		7B1F66A82862A9C5008B38ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7B1F66A92862A9E8008B38ED /* AlbumTableViewCell.swift */,
 				7B1F66AD2862B13E008B38ED /* SongTableViewCell.swift */,
 			);
 			name = Views;
@@ -231,7 +228,6 @@
 				7B1F66B92862BF8C008B38ED /* Song.swift in Sources */,
 				7B292BFA285D83B90030DC4A /* SceneDelegate.swift in Sources */,
 				7B1F66B12862B615008B38ED /* Album.swift in Sources */,
-				7B1F66AA2862A9E8008B38ED /* AlbumTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
