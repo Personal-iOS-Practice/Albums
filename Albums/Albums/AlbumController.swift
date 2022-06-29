@@ -17,10 +17,25 @@ class AlbumController {
         
         do {
             let data = try Data(contentsOf: urlPath)
-            let newAlbum = try JSONDecoder().decode(Album.self, from: data)
+            let _ = try JSONDecoder().decode(Album.self, from: data)
             print("SUCCESS!!!")
         } catch {
             print("ERROR: Could not create album from json data, error: \(error)")
+        }
+        
+    }
+    
+    func testEncodingExampleAlbum() {
+        let urlPath = Bundle.main.url(forResource: "exampleAlbum", withExtension: "json")!
+        
+        do {
+            let data = try Data(contentsOf: urlPath)
+            let newAlbum = try JSONDecoder().decode(Album.self, from: data)
+            print("DECODING SUCCESS!!!")
+            let _ = try JSONEncoder().encode(newAlbum)
+            print("ENCODING SUCCESS!!!")
+        } catch {
+            print("ENCODING FAILED, error: \(error)")
         }
         
     }
