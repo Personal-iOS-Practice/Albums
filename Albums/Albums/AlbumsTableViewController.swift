@@ -38,9 +38,20 @@ class AlbumsTableViewController: UITableViewController {
         return cell
     }
     
-// MARK: - Navigation
+// MARK: - Navigation -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "NewAlbumSegue" {
+            let destinationVC = segue.destination as! AlbumDetailTableViewController
+            destinationVC.albumController = albumController
+            
+        } else if segue.identifier == "AlbumDetailSegue" {
+            let destinationVC = segue.destination as! AlbumDetailTableViewController
+            let selectedCellIndex = tableView.indexPathForSelectedRow!
+            let selectedAlbum = albumController.albums[selectedCellIndex.row]
+            destinationVC.albumController = albumController
+            destinationVC.album = selectedAlbum
+            
+        }
     }
 
-}
+} //End of class

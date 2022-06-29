@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="HGO-mZ-Agb" kind="show" id="FKy-vI-JeG"/>
+                                    <segue destination="HGO-mZ-Agb" kind="show" identifier="AlbumDetailSegue" id="FKy-vI-JeG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" id="gav-ds-MkS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WGD-zR-qzf">
                             <connections>
-                                <segue destination="HGO-mZ-Agb" kind="show" id="SEY-h2-kJ0"/>
+                                <segue destination="HGO-mZ-Agb" kind="show" identifier="NewAlbumSegue" id="SEY-h2-kJ0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -207,7 +207,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="SEY-h2-kJ0"/>
+        <segue reference="FKy-vI-JeG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
