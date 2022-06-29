@@ -18,6 +18,26 @@ class AlbumController {
     var decoder = JSONDecoder()
     
 //MARK: - Methods -
+    // Creates a new Album, adds it to the albums array, and sends it to the API
+    func createAlbum(name: String, artist: String, id: String, genres: [String], coverArt: [URL], songs: [Song]) {
+        let newAlbum = Album(name: name, artist: artist, id: id, genres: genres, coverArt: coverArt, songs: songs)
+        albums.append(newAlbum)
+        put(album: newAlbum)
+    }
+    // Updates an Album instance and sends changes to the API
+    func update(album: inout Album, name: String, artist: String, id: String, genres: [String], coverArt: [URL], songs: [Song]) {
+        album.name = name
+        album.artist = artist
+        album.id = id
+        album.genres = genres
+        album.coverArt = coverArt
+        album.songs = songs
+        put(album: album)
+    }
+    // Initializes a new Song instance and returns it
+    func createSong(id: String, duration: String, name: String) -> Song {
+        return Song(id: id, duration: duration, name: name)
+    }
     // Fetch albums - GET
     func getAlbums(completion: @escaping (Error?) -> Void) {
         
@@ -50,8 +70,17 @@ class AlbumController {
     // Upload album - PUT
     func put(album: Album) {
         
-        var request = URLRequest(url: baseURL.appendingPathComponent(album.id))
+        var request = URLRequest(url: baseURL.appendingPathComponent(album.id).appendingPathExtension("json"))
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
+        
+        do {
+            let data = try encoder.encode(album)
+            request.httpBody = data
+        } catch {
+            print("ERROR: Could not encode album into data, error: \(error)")
+            return
+        }
         
         URLSession.shared.dataTask(with: request) { _, response, error in
             if let error = error {
@@ -60,9 +89,9 @@ class AlbumController {
             }
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
-                    print("Album was sent to API successfully!")
+                    print("Album was sent to API successfully, code: \(response.statusCode)")
                 } else {
-                    print("ERROR: Failed to send album to API!")
+                    print("ERROR: Failed to send album to API, code: \(response.statusCode)")
                     return
                 }
             }
@@ -77,8 +106,8 @@ class AlbumController {
         
         do {
             let data = try Data(contentsOf: urlPath)
-            let _ = try JSONDecoder().decode(Album.self, from: data)
-            print("SUCCESS!!!")
+            let album = try JSONDecoder().decode(Album.self, from: data)
+            put(album: album)
         } catch {
             print("ERROR: Could not create album from json data, error: \(error)")
         }

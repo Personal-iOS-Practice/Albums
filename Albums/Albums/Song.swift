@@ -14,6 +14,13 @@ struct Song: Codable {
     var duration: String
     var name: String
     
+//MARK: - Init -
+    init(id: String, duration: String, name: String) {
+        self.id = id
+        self.duration = duration
+        self.name = name
+    }
+    
 //MARK: - Coding keys enum
     enum SongKeys: String, CodingKey {
         
@@ -42,7 +49,6 @@ struct Song: Codable {
         duration = try durationContainer.decode(String.self, forKey: .duration)
         name = try nameContainer.decode(String.self, forKey: .title)
     }
-    
     // Encoder method
     func encode(to encoder: Encoder) throws {
         
