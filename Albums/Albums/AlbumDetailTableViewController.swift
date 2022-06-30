@@ -11,7 +11,13 @@ class AlbumDetailTableViewController: UITableViewController {
     
 //MARK: - Properties -
     var albumController: AlbumController?
-    var album: Album?
+    var tempSongs: [Song] = []
+    
+    var album: Album? {
+        didSet {
+            updateViews()
+        }
+    }
     
 //MARK: - IBOutlets -
     @IBOutlet weak var albumNameTextField: UITextField!
@@ -22,31 +28,78 @@ class AlbumDetailTableViewController: UITableViewController {
 //MARK: - IBActions -
     // When the user taps the Save bar button
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        guard let albumName = albumNameTextField.text,
+              let artistName = artistNameTextField.text,
+              let genresString = genresTextField.text,
+              let coverArtURLsString = coverUrlsTextField.text else { return }
         
+        let genresArray = genresString.split(separator: ",") as! [String]
+        let coverArtStrings = coverArtURLsString.split(separator: ",") as! [String]
+        let coverArtURLs = coverArtStrings.compactMap({ URL(string: $0)! })
+        
+        if var album = album {
+            albumController!.update(album: &album, name: albumName, artist: artistName, id: album.id, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)
+        } else {
+            albumController!.createAlbum(name: albumName, artist: artistName, id: UUID().uuidString, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
 
 //MARK: - Methods -
+    // Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
+    }
+    // Handles updating the UI when an existing album is present
+    func updateViews() {
+        guard isViewLoaded else { return }
+        if let album = album {
+            
+            let coverArtURLStrings = album.coverArt.compactMap({ $0.absoluteString })
+            
+            albumNameTextField.text = album.name
+            artistNameTextField.text = album.artist
+            genresTextField.text = album.genres.joined(separator: ",")
+            coverUrlsTextField.text = coverArtURLStrings.joined(separator: ",")
+            tempSongs = album.songs
+            view.largeContentTitle = album.name
+            
+        } else {
+            view.largeContentTitle = "New Album"
+        }
     }
     
 //MARK: - TableView DataSource and Delegate -
     // Number of cells in TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return tempSongs.count + 1
     }
     // Configuring each cell in the TableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath)
-        
-        // configure cell here...
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as! SongTableViewCell
+        cell.delegate = self
+        cell.song = tempSongs[indexPath.row]
         return cell
     }
-    
-//MARK: - Navigation -
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    // Handles height or whatever
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let isFinalCell = tempSongs.count == indexPath.row
+        let appropriateHeight = isFinalCell ? 140.0 : 100.0
+        return appropriateHeight
     }
 
 } //End of class
+
+//MARK: - Extensions -
+extension AlbumDetailTableViewController: SongTableViewCellDelegate {
+    func addSong(with title: String, duration: String) {
+        let newSong = albumController!.createSong(id: UUID().uuidString, duration: duration, name: title)
+        tempSongs.append(newSong)
+        tableView.reloadData()
+        
+        let indexPath = IndexPath(row: tempSongs.count, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+}

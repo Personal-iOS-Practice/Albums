@@ -41,41 +41,59 @@ class AlbumController {
     // Fetch albums - GET
     func getAlbums(completion: @escaping (Error?) -> Void) {
         
-        URLSession.shared.dataTask(with: baseURL) { data, response, error in
+        database.root.getData { error, snapshot in
             if let error = error {
+                print("ERROR: The built in firebase crap didn't work :/ | error: \(error)")
                 completion(error)
                 return
             }
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode != 200 {
-                    print("ERROR: Fetching albums failed")
-                }
-            }
-            guard let data = data else { return }
             
-            do {
-                let fetchedAlbums = try self.decoder.decode([String : Album].self, from: data)
-                for album in fetchedAlbums.values {
-                    self.albums.append(album)
-                }
-                return
-            } catch {
-                print("ERROR: Could not decode data, error message: \(error)")
-                return
+            let fetchedAlbums = snapshot?.value as! [String : Album]
+            for album in fetchedAlbums.values {
+                self.albums.append(album)
             }
-            
         }
-        .resume()
+        
+//        URLSession.shared.dataTask(with: baseURL) { data, response, error in
+//            if let error = error {
+//                completion(error)
+//                return
+//            }
+//            if let response = response as? HTTPURLResponse {
+//                if response.statusCode != 200 {
+//                    print("ERROR: Fetching albums failed")
+//                }
+//            }
+//            guard let data = data else { return }
+//
+//            do {
+//                let fetchedAlbums = try self.decoder.decode([String : Album].self, from: data)
+//                for album in fetchedAlbums.values {
+//                    self.albums.append(album)
+//                }
+//                return
+//            } catch {
+//                print("ERROR: Could not decode data, error message: \(error)")
+//                return
+//            }
+//
+//        }
+//        .resume()
     }
     // Upload album - PUT
     func put(album: Album) {
         
-        var request = URLRequest(url: baseURL.appendingPathComponent(album.id).appendingPathExtension("json"))
+        var albumsDictionary: [String : Album] = [ : ]
+        for presentAlbum in albums {
+            albumsDictionary[presentAlbum.id] = presentAlbum
+        }
+        
+        var request = URLRequest(url: baseURL.appendingPathExtension("json"))
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
         
         do {
-            let data = try encoder.encode(album)
+            let data = try encoder.encode(albumsDictionary)
             request.httpBody = data
         } catch {
             print("ERROR: Could not encode album into data, error: \(error)")
@@ -107,7 +125,9 @@ class AlbumController {
         do {
             let data = try Data(contentsOf: urlPath)
             let album = try JSONDecoder().decode(Album.self, from: data)
-            put(album: album)
+            
+            createAlbum(name: album.name, artist: album.artist, id: UUID().uuidString, genres: album.genres, coverArt: album.coverArt, songs: album.songs)
+            
         } catch {
             print("ERROR: Could not create album from json data, error: \(error)")
         }

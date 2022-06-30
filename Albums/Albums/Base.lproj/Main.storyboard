@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Albums Table View Controller-->
+        <!--Albums-->
         <scene sceneID="j0E-N0-7gg">
             <objects>
                 <tableViewController id="tQm-MH-0xH" customClass="AlbumsTableViewController" customModule="Albums" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="tQm-MH-0xH" id="ONj-jY-j3e"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gav-ds-MkS">
+                    <navigationItem key="navigationItem" title="Albums" id="gav-ds-MkS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WGD-zR-qzf">
                             <connections>
                                 <segue destination="HGO-mZ-Agb" kind="show" identifier="NewAlbumSegue" id="SEY-h2-kJ0"/>

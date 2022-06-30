@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         let albumController = AlbumController()
+        albumController.getAlbums { _ in
+            
+        }
         albumController.testDecodingExampleAlbum()
 //        albumController.testEncodingExampleAlbum()
         
