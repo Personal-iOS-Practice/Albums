@@ -70,15 +70,16 @@ class AlbumController {
                 let fetchedAlbums = try self.decoder.decode([String : Album].self, from: data)
                 for album in fetchedAlbums.values {
                     self.albums.append(album)
+                    completion(nil)
                 }
                 return
             } catch {
                 print("ERROR: Could not decode data, error message: \(error)")
+                completion(error)
                 return
             }
 
-        }
-        .resume()
+        } .resume()
     }
     // Upload album - PUT
     func put(album: Album) {

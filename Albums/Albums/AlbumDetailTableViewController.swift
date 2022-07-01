@@ -64,6 +64,7 @@ class AlbumDetailTableViewController: UITableViewController {
             genresTextField.text = album.genres.joined(separator: ",")
             coverUrlsTextField.text = coverArtURLStrings.joined(separator: ",")
             tempSongs = album.songs
+            tableView.reloadData()
             view.largeContentTitle = album.name
             
         } else {
@@ -78,9 +79,13 @@ class AlbumDetailTableViewController: UITableViewController {
     }
     // Configuring each cell in the TableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as! SongTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongTableViewCell
         cell.delegate = self
-        cell.song = tempSongs[indexPath.row]
+        
+        let isFinalCell = tempSongs.count == indexPath.row
+        cell.song = isFinalCell ? nil : tempSongs[indexPath.row]
+        
+//        cell.song = tempSongs[indexPath.row]
         return cell
     }
     // Handles height or whatever
