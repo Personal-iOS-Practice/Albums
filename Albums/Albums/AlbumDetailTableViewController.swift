@@ -33,8 +33,8 @@ class AlbumDetailTableViewController: UITableViewController {
               let genresString = genresTextField.text,
               let coverArtURLsString = coverUrlsTextField.text else { return }
         
-        let genresArray = genresString.split(separator: ",") as! [String]
-        let coverArtStrings = coverArtURLsString.split(separator: ",") as! [String]
+        let genresArray = genresString.split(separator: ",").compactMap({ String($0) })
+        let coverArtStrings = coverArtURLsString.split(separator: ",").compactMap({ String($0) })
         let coverArtURLs = coverArtStrings.compactMap({ URL(string: $0)! })
         
         if var album = album {

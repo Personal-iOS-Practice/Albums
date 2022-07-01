@@ -17,7 +17,6 @@ class AlbumsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         albumController.getAlbums(completion: { _ in
-            print("-----------------this code should be running fine if you're reading this.......")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
