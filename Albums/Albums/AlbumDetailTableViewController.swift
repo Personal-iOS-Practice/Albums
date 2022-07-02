@@ -31,16 +31,23 @@ class AlbumDetailTableViewController: UITableViewController {
         guard let albumName = albumNameTextField.text,
               let artistName = artistNameTextField.text,
               let genresString = genresTextField.text,
-              let coverArtURLsString = coverUrlsTextField.text else { return }
+              let coverArtURLsString = coverUrlsTextField.text,
+              let albumController = albumController else { return }
         
         let genresArray = genresString.split(separator: ",").compactMap({ String($0) })
         let coverArtStrings = coverArtURLsString.split(separator: ",").compactMap({ String($0) })
-        let coverArtURLs = coverArtStrings.compactMap({ URL(string: $0)! })
+        
+        var coverArtURLs: [URL] = []
+        for urlString in coverArtStrings {
+            guard let newURL = URL(string: urlString), UIApplication.shared.canOpenURL(newURL) else { continue }
+            coverArtURLs.append(newURL)
+        }
+        guard coverArtURLs.count == coverArtStrings.count else { return }
         
         if var album = album {
-            albumController!.update(album: &album, name: albumName, artist: artistName, id: album.id, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)
+            albumController.update(album: &album, name: albumName, artist: artistName, id: album.id, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)
         } else {
-            albumController!.createAlbum(name: albumName, artist: artistName, id: UUID().uuidString, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)
+            albumController.createAlbum(name: albumName, artist: artistName, id: UUID().uuidString, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)
         }
         
         navigationController?.popViewController(animated: true)

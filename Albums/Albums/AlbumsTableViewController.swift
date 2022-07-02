@@ -13,9 +13,9 @@ class AlbumsTableViewController: UITableViewController {
     var albumController = AlbumController()
 
 //MARK: - Methods -
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    // Lifecycle methods
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         albumController.getAlbums(completion: { _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()

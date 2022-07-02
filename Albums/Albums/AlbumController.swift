@@ -21,7 +21,6 @@ class AlbumController {
     // Creates a new Album, adds it to the albums array, and sends it to the API
     func createAlbum(name: String, artist: String, id: String, genres: [String], coverArt: [URL], songs: [Song]) {
         let newAlbum = Album(name: name, artist: artist, id: id, genres: genres, coverArt: coverArt, songs: songs)
-        albums.append(newAlbum)
         put(album: newAlbum)
     }
     // Updates an Album instance and sends changes to the API
@@ -67,12 +66,17 @@ class AlbumController {
             guard let data = data else { return }
 
             do {
-                let fetchedAlbums = try self.decoder.decode([String : Album].self, from: data)
-                for album in fetchedAlbums.values {
-                    self.albums.append(album)
-                    completion(nil)
+                let fetchedAlbumsDictionary = try self.decoder.decode([String : Album].self, from: data)
+                var fetchedAlbums: [Album] = []
+                
+                for album in fetchedAlbumsDictionary.values {
+                    fetchedAlbums.append(album)
                 }
+                
+                self.albums = fetchedAlbums
+                completion(nil)
                 return
+                
             } catch {
                 print("ERROR: Could not decode data, error message: \(error)")
                 completion(error)
@@ -95,7 +99,6 @@ class AlbumController {
             print("ERROR: Could not encode album into data, error: \(error)")
             return
         }
-        
         URLSession.shared.dataTask(with: request) { _, response, error in
             if let error = error {
                 print("ERROR: Failed to send album to API, error: \(error)")
