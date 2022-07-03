@@ -28,10 +28,11 @@ class AlbumDetailTableViewController: UITableViewController {
 //MARK: - IBActions -
     // When the user taps the Save bar button
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        guard let albumName = albumNameTextField.text,
-              let artistName = artistNameTextField.text,
-              let genresString = genresTextField.text,
-              let coverArtURLsString = coverUrlsTextField.text,
+        guard let albumName = albumNameTextField.text, !albumName.isEmpty,
+              let artistName = artistNameTextField.text, !artistName.isEmpty,
+              let genresString = genresTextField.text, !genresString.isEmpty,
+              let coverArtURLsString = coverUrlsTextField.text, !coverArtURLsString.isEmpty,
+              tempSongs.count > 0,
               let albumController = albumController else { return }
         
         let genresArray = genresString.split(separator: ",").compactMap({ String($0) })
@@ -43,6 +44,8 @@ class AlbumDetailTableViewController: UITableViewController {
             coverArtURLs.append(newURL)
         }
         guard coverArtURLs.count == coverArtStrings.count else { return }
+        
+        
         
         if var album = album {
             albumController.update(album: &album, name: albumName, artist: artistName, id: album.id, genres: genresArray, coverArt: coverArtURLs, songs: tempSongs)

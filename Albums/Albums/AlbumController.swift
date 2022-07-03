@@ -12,7 +12,7 @@ class AlbumController {
     
 //MARK: - Properties -
     var albums: [Album] = []
-    let baseURL = URL(string: "https://albums-f1003-default-rtdb.firebaseio.com/.json")!
+    let baseURL = URL(string: "https://albums-f1003-default-rtdb.firebaseio.com/")!
     var database = Database.database().reference()
     var encoder = JSONEncoder()
     var decoder = JSONDecoder()
@@ -53,7 +53,7 @@ class AlbumController {
 //            }
 //        }
         
-        URLSession.shared.dataTask(with: baseURL) { data, response, error in
+        URLSession.shared.dataTask(with: baseURL.appendingPathExtension("json")) { data, response, error in
             if let error = error {
                 completion(error)
                 return
