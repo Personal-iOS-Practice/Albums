@@ -61,7 +61,7 @@
             </objects>
             <point key="canvasLocation" x="1642.0289855072465" y="112.5"/>
         </scene>
-        <!--New Album-->
+        <!--Album Detail Table View Controller-->
         <scene sceneID="YDd-LP-4aH">
             <objects>
                 <tableViewController id="HGO-mZ-Agb" customClass="AlbumDetailTableViewController" customModule="Albums" customModuleProvider="target" sceneMemberID="viewController">
@@ -169,7 +169,7 @@
                             <outlet property="delegate" destination="HGO-mZ-Agb" id="jG9-5r-gAj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Album" id="pvr-ET-j6J">
+                    <navigationItem key="navigationItem" id="pvr-ET-j6J">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Egz-9d-lYX">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="HGO-mZ-Agb" id="mUO-6J-xhe"/>
@@ -208,7 +208,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FKy-vI-JeG"/>
+        <segue reference="SEY-h2-kJ0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

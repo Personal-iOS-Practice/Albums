@@ -75,10 +75,10 @@ class AlbumDetailTableViewController: UITableViewController {
             coverUrlsTextField.text = coverArtURLStrings.joined(separator: ",")
             tempSongs = album.songs
             tableView.reloadData()
-            view.largeContentTitle = album.name
+            navigationItem.title = album.name
             
         } else {
-            view.largeContentTitle = "New Album"
+            navigationItem.title = "New Album"
         }
     }
     
